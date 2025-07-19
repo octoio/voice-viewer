@@ -1,0 +1,26 @@
+# Professional Theme - Perfect for technical devlog content
+
+[video]
+resolution = [1920, 1080]
+fps = 30
+bitrate = "5M"
+codec = "libx264"
+
+[audio]
+sample_rate = 44100
+buffer_size = 1024
+hop_length = 512
+noise_reduction = true
+
+[visualizer]
+type = "spectrum"
+smoothing = 0.9
+sensitivity = 1.0
+bars = 64
+
+[theme]
+background = "#1a1a1a"
+primary = "#00ff88"      # Green for technical aesthetic
+secondary = "#ffffff"    # Clean white
+accent = "#64ffda"       # Cyan accent
+gradient = true

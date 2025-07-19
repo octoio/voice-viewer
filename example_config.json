@@ -1,0 +1,16 @@
+{
+  "theme": "minimal",
+  "visualizer": {
+    "type": "circular",
+    "sensitivity": 1.5,
+    "rotation_speed": 2.0,
+    "inner_rotation_speed": -1.5,
+    "min_radius": 0.2,
+    "max_radius": 0.4,
+    "bars": 64,
+    "inner_min_radius": 0.05,
+    "inner_max_radius": 0.15,
+    "inner_bars": 32,
+    "smoothing": 0.8
+  }
+}

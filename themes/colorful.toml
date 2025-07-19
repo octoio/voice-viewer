@@ -1,0 +1,26 @@
+# Colorful Theme - Vibrant and dynamic
+
+[video]
+resolution = [1920, 1080]
+fps = 30
+bitrate = "5M"
+codec = "libx264"
+
+[audio]
+sample_rate = 44100
+buffer_size = 1024
+hop_length = 512
+noise_reduction = true
+
+[visualizer]
+type = "spectrum"
+smoothing = 0.7
+sensitivity = 1.5
+bars = 64
+
+[theme]
+background = "#000000"   # Pure black
+primary = "#ff0080"      # Hot pink
+secondary = "#00ff80"    # Bright green
+accent = "#8000ff"       # Purple
+gradient = true

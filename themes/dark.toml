@@ -1,0 +1,26 @@
+# Dark Theme - GitHub-inspired dark mode
+
+[video]
+resolution = [1920, 1080]
+fps = 30
+bitrate = "5M"
+codec = "libx264"
+
+[audio]
+sample_rate = 44100
+buffer_size = 1024
+hop_length = 512
+noise_reduction = true
+
+[visualizer]
+type = "spectrum"
+smoothing = 0.8
+sensitivity = 1.2
+bars = 64
+
+[theme]
+background = "#0d1117"   # GitHub dark background
+primary = "#58a6ff"      # GitHub blue
+secondary = "#f0f6fc"    # GitHub light text
+accent = "#ffa657"       # GitHub orange
+gradient = true

@@ -1,0 +1,26 @@
+# Minimal Theme - Simple white on black for clean aesthetic
+
+[video]
+resolution = [1920, 1080]
+fps = 30
+bitrate = "5M"
+codec = "libx264"
+
+[audio]
+sample_rate = 44100
+buffer_size = 1024
+hop_length = 512
+noise_reduction = true
+
+[visualizer]
+type = "circular"
+smoothing = 0.9
+sensitivity = 1.0
+bars = 48
+
+[theme]
+background = "#000000"   # Pure black
+primary = "#ffffff"      # Pure white
+secondary = "#cccccc"    # Light gray
+accent = "#ffffff"       # White accent
+gradient = false
