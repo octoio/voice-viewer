@@ -61,7 +61,7 @@ class LiveVisualizerGUI:
         """Create the GUI interface"""
         self.root = tk.Tk()
         self.root.title("Voice Viewer - Live Mode")
-        self.root.geometry("400x600")
+        self.root.geometry("450x600")
         self.root.resizable(False, False)
         
         # Force window update and visibility
@@ -108,6 +108,7 @@ class LiveVisualizerGUI:
         self.play_button = ttk.Button(control_frame, text="▶ Start", command=self.toggle_playback)
         self.play_button.pack(side="left", padx=5)
         
+        ttk.Button(control_frame, text="Load Config", command=self.load_config_dialog).pack(side="left", padx=5)
         ttk.Button(control_frame, text="Save Config", command=self.save_config_dialog).pack(side="left", padx=5)
         ttk.Button(control_frame, text="Reset", command=self.reset_params).pack(side="left", padx=5)
         
@@ -393,6 +394,74 @@ class LiveVisualizerGUI:
         
         self.recreate_visualizer()
     
+    def load_config_dialog(self):
+        """Show load config dialog"""
+        filename = filedialog.askopenfilename(
+            title="Load Configuration",
+            filetypes=[("JSON files", "*.json"), ("All files", "*.*")]
+        )
+        if filename:
+            self.load_config(filename)
+    
+    def load_config(self, config_path: str):
+        """Load configuration from JSON file"""
+        try:
+            with open(config_path, 'r') as f:
+                saved_config = json.load(f)
+            
+            # Apply saved visualizer settings
+            visualizer_config = saved_config.get('visualizer', {})
+            
+            # Update config object
+            for key, value in visualizer_config.items():
+                if hasattr(self.config.visualizer, key):
+                    setattr(self.config.visualizer, key, value)
+            
+            # Update GUI controls to reflect loaded values
+            if 'sensitivity' in visualizer_config:
+                self.param_vars["sensitivity"].set(visualizer_config['sensitivity'])
+                self.sensitivity_label.config(text=f"{visualizer_config['sensitivity']:.2f}")
+            
+            if 'rotation_speed' in visualizer_config:
+                self.param_vars["rotation_speed"].set(visualizer_config['rotation_speed'])
+                self.rotation_label.config(text=f"{visualizer_config['rotation_speed']:.2f}")
+                
+            if 'inner_rotation_speed' in visualizer_config:
+                self.param_vars["inner_rotation_speed"].set(visualizer_config['inner_rotation_speed'])
+                self.inner_rotation_label.config(text=f"{visualizer_config['inner_rotation_speed']:.2f}")
+            
+            if 'min_radius' in visualizer_config:
+                self.param_vars["min_radius"].set(visualizer_config['min_radius'])
+                self.min_radius_label.config(text=f"{visualizer_config['min_radius']:.2f}")
+                
+            if 'max_radius' in visualizer_config:
+                self.param_vars["max_radius"].set(visualizer_config['max_radius'])
+                self.max_radius_label.config(text=f"{visualizer_config['max_radius']:.2f}")
+                
+            if 'bars' in visualizer_config:
+                self.param_vars["bars"].set(visualizer_config['bars'])
+                self.bars_label.config(text=str(visualizer_config['bars']))
+                
+            if 'inner_min_radius' in visualizer_config:
+                self.param_vars["inner_min_radius"].set(visualizer_config['inner_min_radius'])
+                self.inner_min_label.config(text=f"{visualizer_config['inner_min_radius']:.2f}")
+                
+            if 'inner_max_radius' in visualizer_config:
+                self.param_vars["inner_max_radius"].set(visualizer_config['inner_max_radius'])
+                self.inner_max_label.config(text=f"{visualizer_config['inner_max_radius']:.2f}")
+                
+            if 'inner_bars' in visualizer_config:
+                self.param_vars["inner_bars"].set(visualizer_config['inner_bars'])
+                self.inner_bars_label.config(text=str(visualizer_config['inner_bars']))
+            
+            # Recreate visualizer with new settings
+            self.recreate_visualizer()
+            
+            messagebox.showinfo("Success", f"Configuration loaded from:\n{config_path}")
+            
+        except Exception as e:
+            messagebox.showerror("Error", f"Failed to load configuration:\n{e}")
+
     def save_config_dialog(self):
         """Show save config dialog"""
         if not self.save_config_path:
