@@ -220,3 +220,5 @@ __marimo__/
 *.m4v
 *.flv
 *.vob
+*.txt
+*.json
